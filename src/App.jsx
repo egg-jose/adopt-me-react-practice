@@ -1,13 +1,5 @@
-import React from "react";
-import { createRoot } from "react-dom";
-
-const Pet = ({ name, animal, breed }) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, name),
-    React.createElement("h2", {}, animal),
-    React.createElement("h2", {}, breed),
-  ]);
-};
+import { createRoot } from "react-dom/client";
+import Pet from "./Pet";
 
 const App = () => {
   const animals = [
@@ -27,18 +19,15 @@ const App = () => {
       breed: "Red Fox",
     },
   ];
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Adopt me!"),
-    animals.map(({ name, animal, breed }, index) =>
-      React.createElement(Pet, {
-        name,
-        animal,
-        breed,
-        key: index,
-      })
-    ),
-  ]);
+  return (
+    <div>
+      <h1>Adopt me</h1>
+      {animals.map(({ name, animal, breed }, index) => (
+        <Pet name={name} animal={animal} breed={breed} key={index} />
+      ))}
+    </div>
+  );
 };
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(React.createElement(App));
+root.render(<App />);
