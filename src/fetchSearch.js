@@ -5,7 +5,7 @@ const fetchSearch = async ({ queryKey }) => {
   );
 
   if (!apiRes.ok) {
-    throw new Error(`breed/${apiRes} fetch not ok`);
+    throw new Error(`search/${apiRes} fetch not ok`);
   }
 
   return apiRes.json();
